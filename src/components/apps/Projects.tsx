@@ -1,10 +1,11 @@
-import { ExternalLink } from 'lucide-react';
-import { GITHUB_URL } from '../../apps';
+import { ExternalLink, Lock } from 'lucide-react';
 
 interface Project {
   title: string;
   description: string;
   tech: string[];
+  /** GitHub repo URL; omit for private/unpublished work */
+  link?: string;
 }
 
 const PROJECTS: Project[] = [
@@ -13,6 +14,7 @@ const PROJECTS: Project[] = [
     description:
       'This site — a portfolio styled as a Hyprland desktop environment with a tiling window manager, edge/corner snapping, and a working terminal emulator.',
     tech: ['React', 'TypeScript', 'Tailwind', 'Framer Motion'],
+    link: 'https://github.com/JordanCa0/portfolio',
   },
   {
     title: 'Donor Prediction & Segmentation Dashboard',
@@ -50,14 +52,20 @@ export default function Projects() {
               </span>
             ))}
           </div>
-          <a
-            href={GITHUB_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-3 inline-flex items-center gap-1 text-xs text-accent-soft transition-colors hover:text-accent-hover"
-          >
-            <ExternalLink size={12} /> View on GitHub
-          </a>
+          {p.link ? (
+            <a
+              href={p.link}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-3 inline-flex items-center gap-1 text-xs text-accent-soft transition-colors hover:text-accent-hover"
+            >
+              <ExternalLink size={12} /> View on GitHub
+            </a>
+          ) : (
+            <span className="mt-3 inline-flex items-center gap-1 text-xs text-body-muted">
+              <Lock size={12} /> Private repo — code available on request
+            </span>
+          )}
         </article>
       ))}
     </div>
