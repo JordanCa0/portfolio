@@ -9,7 +9,7 @@ const EXPERIENCE: Entry[] = [
   {
     title: 'Software Engineering Intern',
     org: 'Mercury — San Francisco, CA (Remote)',
-    period: 'Jan 2026 — Present',
+    period: 'Jan 2026 — May 2026',
     bullets: [
       'Designed and implemented pause/unpause functionality for autotransfer rules in a large-scale Haskell fintech backend, spanning database schema changes, domain types, SQL queries, and API handlers across 140+ commits.',
       'Built database migrations and schema evolution for autotransfer rule lineage tracking — backfill scripts, NOT NULL constraint migrations, and a new pause table with indexing — ensuring zero-downtime deployments on production banking infrastructure.',
@@ -20,7 +20,7 @@ const EXPERIENCE: Entry[] = [
   {
     title: 'Research Assistant — Machine Learning & Evolutionary Algorithms',
     org: 'Wilfrid Laurier University — Waterloo, ON',
-    period: 'Sep 2025 — Present',
+    period: 'Sep 2025 — Jan 2026',
     bullets: [
       'Utilized Phikon-2 on a Whole Slide Imaging (WSI) dataset to extract 50,000+ high-dimensional features per slide, enabling faster downstream classification and more compact medical image representations.',
       'Optimized CNN architectures through iterative experimentation with evolutionary strategies, achieving a 20% reduction in redundant features and shorter training times without sacrificing accuracy.',

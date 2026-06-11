@@ -11,10 +11,10 @@ export default function About() {
         </p>
       </div>
       <p className="max-w-md text-sm leading-relaxed text-body-muted">
-        I'm a computer science student at Wilfrid Laurier University, currently
-        a software engineering intern at Mercury working on a large-scale
-        Haskell fintech backend. On the side I do machine learning research
-        with evolutionary algorithms and medical imaging. I like type systems,
+        I'm a computer science student at Wilfrid Laurier University, most
+        recently a software engineering intern at Mercury working on a
+        large-scale Haskell fintech backend. I've also done machine learning
+        research with evolutionary algorithms and medical imaging. I like type systems,
         clean abstractions, and software that feels good to use — like this
         desktop you're clicking around in.
       </p>
