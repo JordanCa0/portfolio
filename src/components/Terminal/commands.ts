@@ -14,6 +14,8 @@ export const COMMAND_DESCRIPTIONS: Array<{ cmd: string; desc: string }> = [
   { cmd: 'projects', desc: 'Open the Projects window' },
   { cmd: 'skills', desc: 'Open the Skills window' },
   { cmd: 'contact', desc: 'Open the Contact window' },
+  { cmd: 'themes', desc: 'Open the theme picker' },
+  { cmd: 'spotify', desc: 'Open the music player' },
   { cmd: 'whoami', desc: 'Print who I am' },
   { cmd: 'ls', desc: 'List available sections' },
   { cmd: 'clear', desc: 'Clear the terminal output' },
@@ -21,7 +23,15 @@ export const COMMAND_DESCRIPTIONS: Array<{ cmd: string; desc: string }> = [
   { cmd: 'linkedin', desc: 'Print my LinkedIn URL' },
 ];
 
-const OPENABLE: AppId[] = ['about', 'resume', 'projects', 'skills', 'contact'];
+const OPENABLE: AppId[] = [
+  'about',
+  'resume',
+  'projects',
+  'skills',
+  'contact',
+  'themes',
+  'spotify',
+];
 
 export function executeCommand(input: string, ctx: CommandContext): CommandResult {
   const cmd = input.trim().toLowerCase();

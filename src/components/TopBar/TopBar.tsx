@@ -66,7 +66,7 @@ export default function TopBar({
             aria-label={`Workspace ${w}`}
             className={`relative flex h-5 w-5 items-center justify-center rounded text-[10px] transition-colors ${
               i === activeWorkspace
-                ? 'bg-accent text-body'
+                ? 'bg-accent text-accent-contrast'
                 : occupiedWorkspaces.has(i)
                   ? 'border border-accent/60 text-body hover:bg-accent/25'
                   : 'border border-edge text-body-muted hover:bg-accent/25'

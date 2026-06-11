@@ -15,13 +15,14 @@ export default {
           DEFAULT: 'var(--color-accent)',
           hover: 'var(--color-accent-hover)',
           soft: 'var(--color-accent-soft)',
+          contrast: 'var(--color-accent-contrast)',
         },
         body: {
           DEFAULT: 'var(--color-text)',
           muted: 'var(--color-text-muted)',
         },
         edge: 'var(--color-border)',
-        'snap-preview': 'rgba(139, 26, 26, 0.25)',
+        'snap-preview': 'color-mix(in srgb, var(--color-accent) 25%, transparent)',
         term: {
           green: '#6fbf73',
           pink: '#d4889a',

@@ -6,22 +6,33 @@ import Resume from './apps/Resume';
 import Projects from './apps/Projects';
 import Skills from './apps/Skills';
 import Contact from './apps/Contact';
+import Themes from './apps/Themes';
+import Spotify from './apps/Spotify';
 
 interface MobileLayoutProps {
   dark: boolean;
   onToggleTheme: () => void;
+  themeId: string;
+  onSelectTheme: (id: string) => void;
 }
 
-const SECTIONS: Array<{ id: AppId; node: React.ReactNode }> = [
-  { id: 'about', node: <About /> },
-  { id: 'projects', node: <Projects /> },
-  { id: 'skills', node: <Skills /> },
-  { id: 'resume', node: <Resume /> },
-  { id: 'contact', node: <Contact /> },
-];
-
 /** Simplified stacked layout for < 768px — no draggable windows. */
-export default function MobileLayout({ dark, onToggleTheme }: MobileLayoutProps) {
+export default function MobileLayout({
+  dark,
+  onToggleTheme,
+  themeId,
+  onSelectTheme,
+}: MobileLayoutProps) {
+  const sections: Array<{ id: AppId; node: React.ReactNode }> = [
+    { id: 'about', node: <About /> },
+    { id: 'projects', node: <Projects /> },
+    { id: 'skills', node: <Skills /> },
+    { id: 'resume', node: <Resume /> },
+    { id: 'spotify', node: <div className="h-44"><Spotify /></div> },
+    { id: 'themes', node: <Themes currentId={themeId} onSelect={onSelectTheme} /> },
+    { id: 'contact', node: <Contact /> },
+  ];
+
   return (
     <div className="wallpaper min-h-full overflow-y-auto">
       <header className="sticky top-0 z-10 flex h-12 items-center gap-3 border-b border-edge bg-glass px-4 text-sm backdrop-blur-glass">
@@ -44,7 +55,7 @@ export default function MobileLayout({ dark, onToggleTheme }: MobileLayoutProps)
       </header>
 
       <div className="relative mx-auto max-w-2xl space-y-6 px-4 py-6">
-        {SECTIONS.map(({ id, node }) => {
+        {sections.map(({ id, node }) => {
           const app = APPS.find((a) => a.id === id)!;
           const Icon = app.icon;
           return (

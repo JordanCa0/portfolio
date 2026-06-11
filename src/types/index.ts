@@ -7,6 +7,8 @@ export type AppId =
   | 'projects'
   | 'skills'
   | 'contact'
+  | 'themes'
+  | 'spotify'
   | 'help';
 
 export type SnapZone =
