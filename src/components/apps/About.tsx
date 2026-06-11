@@ -6,14 +6,17 @@ export default function About() {
       </div>
       <div>
         <h1 className="text-2xl font-bold">Jordan Cao</h1>
-        <p className="text-sm text-accent-soft">Software Engineer</p>
+        <p className="text-sm text-accent-soft">
+          Software Engineer · CS @ Wilfrid Laurier · Boba Enjoyer
+        </p>
       </div>
       <p className="max-w-md text-sm leading-relaxed text-body-muted">
-        I'm a software engineer who enjoys building things end to end — from
-        backend services and cloud infrastructure to polished, interactive
-        frontends like this one. I care about clean abstractions, fast feedback
-        loops, and software that feels good to use. When I'm not coding, I'm
-        usually tinkering with my Linux setup or exploring new tools.
+        I'm a computer science student at Wilfrid Laurier University, currently
+        a software engineering intern at Mercury working on a large-scale
+        Haskell fintech backend. On the side I do machine learning research
+        with evolutionary algorithms and medical imaging. I like type systems,
+        clean abstractions, and software that feels good to use — like this
+        desktop you're clicking around in.
       </p>
       <p className="text-xs text-body-muted">
         This site is a working desktop environment — open the terminal and type{' '}

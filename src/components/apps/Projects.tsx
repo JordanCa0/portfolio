@@ -11,20 +11,20 @@ const PROJECTS: Project[] = [
   {
     title: 'Portfolio OS',
     description:
-      'This site — a portfolio styled as a Hyprland desktop environment with a tiling window manager, snapping, and a working terminal emulator.',
+      'This site — a portfolio styled as a Hyprland desktop environment with a tiling window manager, edge/corner snapping, and a working terminal emulator.',
     tech: ['React', 'TypeScript', 'Tailwind', 'Framer Motion'],
   },
   {
-    title: 'Queueflow',
+    title: 'Donor Prediction & Segmentation Dashboard',
     description:
-      'A lightweight distributed task queue with at-least-once delivery, dead-letter handling, and a real-time monitoring dashboard.',
-    tech: ['Go', 'Redis', 'Docker', 'gRPC'],
+      'End-to-end predictive analytics workflow for donor outreach — modeling in Python, SQL pipelines, and Matplotlib/Power BI visualizations that communicate findings to non-technical stakeholders.',
+    tech: ['Python', 'SQL', 'VBA', 'Power BI'],
   },
   {
-    title: 'Shelfware',
+    title: 'WSI Feature Extraction Research',
     description:
-      'Self-hosted home media catalog that scans local libraries, fetches metadata, and serves a fast searchable UI.',
-    tech: ['Node.js', 'SQLite', 'React', 'Tailwind'],
+      'Machine learning research using Phikon-2 on Whole Slide Imaging data — 50,000+ features per slide, with CNN architectures optimized via evolutionary strategies for leaner, faster training.',
+    tech: ['PyTorch', 'CNNs', 'Evolutionary Algorithms'],
   },
 ];
 

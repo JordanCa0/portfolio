@@ -7,39 +7,42 @@ interface Entry {
 
 const EXPERIENCE: Entry[] = [
   {
-    title: 'Software Engineer',
-    org: 'Acme Cloud Inc.',
-    period: '2024 — Present',
+    title: 'Software Engineering Intern',
+    org: 'Mercury — San Francisco, CA (Remote)',
+    period: 'Jan 2026 — Present',
     bullets: [
-      'Build and operate backend services in TypeScript and Go serving 2M+ requests/day.',
-      'Led migration of a legacy deployment pipeline to containerized CI/CD, cutting release time by 60%.',
+      'Designed and implemented pause/unpause functionality for autotransfer rules in a large-scale Haskell fintech backend, spanning database schema changes, domain types, SQL queries, and API handlers across 140+ commits.',
+      'Built database migrations and schema evolution for autotransfer rule lineage tracking — backfill scripts, NOT NULL constraint migrations, and a new pause table with indexing — ensuring zero-downtime deployments on production banking infrastructure.',
+      'Extended type-safe Esqueleto SQL queries and domain model conversions to surface pause status and lineage data through the API, maintaining correctness via Haskell’s type system and comprehensive HSpec test suites.',
+      'Contributed to partner bank rollover logic by implementing autotransfer disablement during account migrations, coordinating across service boundaries in a Nix-based monorepo with Temporal workflows.',
     ],
   },
   {
-    title: 'Software Engineer Intern',
-    org: 'Startup Labs',
-    period: 'Summer 2023',
+    title: 'Research Assistant — Machine Learning & Evolutionary Algorithms',
+    org: 'Wilfrid Laurier University — Waterloo, ON',
+    period: 'Sep 2025 — Present',
     bullets: [
-      'Shipped a customer-facing analytics dashboard with React and PostgreSQL.',
-      'Wrote integration tests that caught three production-blocking regressions before launch.',
+      'Utilized Phikon-2 on a Whole Slide Imaging (WSI) dataset to extract 50,000+ high-dimensional features per slide, enabling faster downstream classification and more compact medical image representations.',
+      'Optimized CNN architectures through iterative experimentation with evolutionary strategies, achieving a 20% reduction in redundant features and shorter training times without sacrificing accuracy.',
+    ],
+  },
+  {
+    title: 'Data Specialist',
+    org: 'Wilfrid Laurier University — Waterloo, ON',
+    period: 'Jan 2025 — Apr 2025',
+    bullets: [
+      'Leveraged Python and ML libraries (NumPy, Scikit-learn, PyTorch, Matplotlib) for predictive analytics and donor segmentation, identifying high-propensity prospects with ~85% accuracy.',
+      'Created interactive dashboards and automated reporting tools using visualization libraries and structured SQL queries to support real-time analytics.',
+      'Validated and cleaned 100,000+ alumni records, removing duplicates and resolving inconsistencies to improve data reliability for reporting.',
     ],
   },
 ];
 
 const EDUCATION: Entry[] = [
   {
-    title: 'B.S. Computer Science',
-    org: 'State University',
-    period: '2020 — 2024',
-    bullets: ['Coursework: distributed systems, operating systems, databases, algorithms.'],
-  },
-];
-
-const CERTIFICATIONS: Entry[] = [
-  {
-    title: 'AWS Certified Solutions Architect — Associate',
-    org: 'Amazon Web Services',
-    period: '2025',
+    title: 'BSc in Computer Science',
+    org: 'Wilfrid Laurier University — Waterloo, ON',
+    period: 'Class of 2026',
     bullets: [],
   },
 ];
@@ -77,7 +80,6 @@ export default function Resume() {
     <div className="space-y-7 p-6">
       <Section heading="Experience" entries={EXPERIENCE} />
       <Section heading="Education" entries={EDUCATION} />
-      <Section heading="Certifications" entries={CERTIFICATIONS} />
     </div>
   );
 }

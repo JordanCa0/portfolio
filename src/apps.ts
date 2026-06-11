@@ -26,3 +26,4 @@ export const APP_MAP: Record<AppId, AppDefinition> = Object.fromEntries(
 export const GITHUB_URL = 'https://github.com/JordanCa0';
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/jordan-cao';
 export const EMAIL = 'jordancao77@gmail.com';
+export const PHONE = '647-383-8878';

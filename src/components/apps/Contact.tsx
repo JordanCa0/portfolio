@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Check, Copy, Github, Linkedin, Mail } from 'lucide-react';
-import { EMAIL, GITHUB_URL, LINKEDIN_URL } from '../../apps';
+import { Check, Copy, Github, Linkedin, Mail, Phone } from 'lucide-react';
+import { EMAIL, GITHUB_URL, LINKEDIN_URL, PHONE } from '../../apps';
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
@@ -34,6 +34,11 @@ export default function Contact() {
           {copied ? <Check size={13} className="text-term-max" /> : <Copy size={13} />}
           {copied ? 'Copied' : 'Copy'}
         </button>
+      </div>
+
+      <div className="flex items-center gap-2 rounded-lg border border-edge bg-chrome p-3">
+        <Phone size={16} className="shrink-0 text-accent-soft" />
+        <code className="flex-1 truncate text-sm">{PHONE}</code>
       </div>
 
       <div className="flex flex-col gap-2 sm:flex-row">

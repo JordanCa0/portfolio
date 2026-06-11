@@ -1,19 +1,52 @@
 const CATEGORIES: Array<{ name: string; items: string[] }> = [
   {
     name: 'Languages',
-    items: ['TypeScript', 'JavaScript', 'Python', 'Go', 'SQL', 'Bash'],
+    items: [
+      'Haskell',
+      'Java',
+      'Python',
+      'C/C++',
+      'SQL',
+      'JavaScript',
+      'TypeScript',
+      'HTML/CSS',
+      'VBA',
+      'Assembly',
+    ],
   },
   {
-    name: 'Frameworks',
-    items: ['React', 'Node.js', 'Express', 'Tailwind CSS', 'Vite'],
+    name: 'Frameworks & Libraries',
+    items: [
+      'React',
+      'Node.js',
+      'Esqueleto',
+      'Persistent',
+      'HSpec',
+      'PyTorch',
+      'TensorFlow',
+      'Scikit-learn',
+      'Pandas',
+      'NumPy',
+      'Matplotlib',
+    ],
   },
   {
     name: 'Tools',
-    items: ['Git', 'Docker', 'Linux', 'Neovim', 'PostgreSQL', 'Redis'],
+    items: [
+      'Git',
+      'Nix',
+      'Docker',
+      'PostgreSQL',
+      'Temporal',
+      'Power BI',
+      'GHCi',
+      'Cursor',
+      'Claude Code',
+    ],
   },
   {
-    name: 'Cloud',
-    items: ['AWS S3', 'CloudFront', 'Lambda', 'EC2', 'GitHub Actions'],
+    name: 'Cloud & Data',
+    items: ['AWS', 'Supabase', 'AI/ML', 'CNNs', 'Image Classification', 'Data Processing'],
   },
 ];
 
