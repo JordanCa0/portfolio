@@ -20,7 +20,6 @@ const CATEGORIES: Array<{ name: string; items: string[] }> = [
       'React',
       'Node.js',
       'Esqueleto',
-      'Persistent',
       'HSpec',
       'PyTorch',
       'TensorFlow',

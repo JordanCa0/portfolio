@@ -11,7 +11,7 @@ The site behaves like a desktop OS: navigate with a working terminal emulator or
 - **Terminal emulator** — type `help` to list commands. Supports `about`, `resume`, `projects`, `skills`, `contact`, `whoami`, `ls`, `github`, `linkedin`, `clear`, and command history with arrow keys.
 - **App launcher** — sidebar panel listing all apps
 - **Top bar** — live clock, fake system stats, light/dark theme toggle, social links
-- **Light/dark mode** — dark red/black theme by default, warm parchment light theme, persisted to localStorage
+- **Light/dark mode** — warm parchment light theme by default, dark red/black theme via the toggle, persisted to localStorage
 - **Responsive** — full desktop experience at ≥768px, simplified stacked layout on mobile
 - **CSS-only wallpaper** — radial gradient with subtle SVG noise, no external images
 

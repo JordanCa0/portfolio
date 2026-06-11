@@ -20,7 +20,7 @@ export default function App() {
   const [launcherOpen, setLauncherOpen] = useState(false);
   const [dark, setDark] = useState(() => {
     const stored = localStorage.getItem('theme');
-    return stored ? stored === 'dark' : true;
+    return stored ? stored === 'dark' : false;
   });
 
   useEffect(() => {
