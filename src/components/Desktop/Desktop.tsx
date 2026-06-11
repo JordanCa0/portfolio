@@ -1,0 +1,70 @@
+import { useCallback, useRef, useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
+import type { AppId, Size, SnapZone } from '../../types';
+import type { WindowManager } from '../../hooks/useWindowManager';
+import { APP_MAP } from '../../apps';
+import Window from '../Window/Window';
+import { snapZoneRect } from '../Window/snap';
+
+interface DesktopProps {
+  wm: WindowManager;
+  renderApp: (appId: AppId) => React.ReactNode;
+}
+
+export default function Desktop({ wm, renderApp }: DesktopProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [previewZone, setPreviewZone] = useState<SnapZone>(null);
+
+  const getDesktopSize = useCallback((): Size => {
+    const rect = ref.current?.getBoundingClientRect();
+    return rect
+      ? { width: rect.width, height: rect.height }
+      : { width: window.innerWidth, height: window.innerHeight - 40 };
+  }, []);
+
+  const preview = previewZone ? snapZoneRect(previewZone, getDesktopSize()) : null;
+
+  return (
+    <main
+      ref={ref}
+      className="wallpaper relative flex-1 overflow-hidden"
+      onMouseDown={(e) => {
+        if (e.target === e.currentTarget) wm.clearFocus();
+      }}
+    >
+      {/* Snap preview overlay shown while dragging near an edge/corner */}
+      {preview && (
+        <div
+          className="pointer-events-none absolute z-[9999] rounded-lg border-2 border-accent bg-snap-preview transition-all duration-100"
+          style={{
+            left: preview.position.x,
+            top: preview.position.y,
+            width: preview.size.width,
+            height: preview.size.height,
+          }}
+        />
+      )}
+
+      <AnimatePresence>
+        {wm.windows
+          .filter((w) => !w.minimized)
+          .map((w) => (
+            <Window
+              key={w.id}
+              win={w}
+              app={APP_MAP[w.appId]}
+              focused={wm.focusedId === w.id}
+              getDesktopSize={getDesktopSize}
+              onClose={wm.closeWindow}
+              onFocus={wm.focusWindow}
+              onMinimize={wm.minimizeWindow}
+              onUpdate={wm.updateWindow}
+              onSnapPreview={setPreviewZone}
+            >
+              {renderApp(w.appId)}
+            </Window>
+          ))}
+      </AnimatePresence>
+    </main>
+  );
+}

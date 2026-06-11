@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Light mode — warm cream/parchment */
+:root {
+  --color-desktop: #ece1cb;
+  --color-glass: rgba(250, 243, 227, 0.85);
+  --color-chrome: rgba(239, 228, 205, 0.92);
+  --color-accent: #8b1a1a;
+  --color-accent-hover: #c0392b;
+  --color-accent-soft: #a05a6a;
+  --color-text: #3d2a2a;
+  --color-text-muted: #8a6f5f;
+  --color-border: rgba(139, 90, 60, 0.3);
+}
+
+/* Dark mode (default) — deep red/black */
+.dark {
+  --color-desktop: #0d0505;
+  --color-glass: rgba(30, 8, 8, 0.85);
+  --color-chrome: rgba(20, 6, 6, 0.92);
+  --color-accent: #8b1a1a;
+  --color-accent-hover: #c0392b;
+  --color-accent-soft: #d4889a;
+  --color-text: #f0d0d0;
+  --color-text-muted: #a08080;
+  --color-border: rgba(180, 60, 60, 0.25);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply font-mono text-body bg-desktop antialiased;
+}
+
+/* CSS-only wallpaper: radial gradient + subtle SVG noise, no external image */
+.wallpaper {
+  background:
+    radial-gradient(ellipse 120% 90% at 30% 20%, rgba(139, 26, 26, 0.22), transparent 60%),
+    radial-gradient(ellipse 100% 80% at 80% 90%, rgba(139, 26, 26, 0.14), transparent 55%),
+    var(--color-desktop);
+  position: relative;
+}
+
+.wallpaper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Slim themed scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-accent) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border-radius: 3px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* react-rnd renders inline-styled wrappers; give them a consistent cursor */
+.window-drag-handle {
+  cursor: grab;
+}
+
+.window-drag-handle:active {
+  cursor: grabbing;
+}
