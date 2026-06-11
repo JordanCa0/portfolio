@@ -32,6 +32,7 @@ export const LINKEDIN_URL = 'https://www.linkedin.com/in/jordan-cao';
 export const EMAIL = 'jordancao77@gmail.com';
 export const PHONE = '647-383-8878';
 
-// Swap the track id for any Spotify track/album/playlist embed URL
-export const SPOTIFY_EMBED_URL =
-  'https://open.spotify.com/embed/track/4PTG3Z6ehGkBFwjybzWkR8?utm_source=generator';
+// Paste any Spotify share link (track/album/playlist); the Spotify app
+// converts it to the embeddable form automatically
+export const SPOTIFY_URL =
+  'https://open.spotify.com/track/23iKYWszFScsU02y1HJb92?si=36c6c5b7970544bc';
