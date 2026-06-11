@@ -35,4 +35,4 @@ export const PHONE = '647-383-8878';
 // Paste any Spotify share link (track/album/playlist); the Spotify app
 // converts it to the embeddable form automatically
 export const SPOTIFY_URL =
-  'https://open.spotify.com/track/23iKYWszFScsU02y1HJb92?si=36c6c5b7970544bc';
+  'https://open.spotify.com/playlist/4uP8UHzQN8LRLNBdL7RpWr?si=e3653b79e03342a4';

@@ -24,6 +24,9 @@ export default function Terminal({ openApp }: TerminalProps) {
   const [input, setInput] = useState('');
   const [history, setHistory] = useState<string[]>([]);
   const [historyIdx, setHistoryIdx] = useState(-1);
+  // Ghost "help" hint typewritten on the prompt until the first command
+  const [ghost, setGhost] = useState('');
+  const [showGhost, setShowGhost] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -33,6 +36,26 @@ export default function Terminal({ openApp }: TerminalProps) {
   }, []);
 
   useEffect(() => {
+    if (!showGhost) {
+      setGhost('');
+      return;
+    }
+    const word = 'help';
+    let timer: number;
+    // Type a character at a time, hold the full word, clear, repeat
+    const tick = (idx: number) => {
+      setGhost(word.slice(0, idx));
+      if (idx < word.length) {
+        timer = window.setTimeout(() => tick(idx + 1), 260);
+      } else {
+        timer = window.setTimeout(() => tick(0), 2200);
+      }
+    };
+    timer = window.setTimeout(() => tick(1), 900);
+    return () => clearTimeout(timer);
+  }, [showGhost]);
+
+  useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight });
   }, [lines]);
 
@@ -40,6 +63,7 @@ export default function Terminal({ openApp }: TerminalProps) {
     const value = input;
     setInput('');
     setHistoryIdx(-1);
+    setShowGhost(false);
     if (value.trim()) setHistory((h) => [value, ...h]);
 
     const result = executeCommand(value, { openApp });
@@ -105,16 +129,26 @@ export default function Terminal({ openApp }: TerminalProps) {
           <span className="text-term-pink">~</span>
           <span className="text-body-muted">$&nbsp;</span>
         </span>
-        <input
-          ref={inputRef}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={onKeyDown}
-          className="min-w-0 flex-1 bg-transparent caret-term-pink outline-none"
-          spellCheck={false}
-          autoComplete="off"
-          aria-label={PROMPT}
-        />
+        <span className="relative min-w-0 flex-1">
+          {input === '' && ghost && (
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-y-0 left-0 select-none text-body-muted opacity-50"
+            >
+              {ghost}
+            </span>
+          )}
+          <input
+            ref={inputRef}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={onKeyDown}
+            className="w-full bg-transparent caret-term-pink outline-none"
+            spellCheck={false}
+            autoComplete="off"
+            aria-label={PROMPT}
+          />
+        </span>
       </div>
     </div>
   );
