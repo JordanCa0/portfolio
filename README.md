@@ -1,6 +1,6 @@
 # Portfolio OS
 
-Personal portfolio website for **Jordan Cao**, styled as a Linux [Hyprland](https://hyprland.org/) desktop environment.
+Personal portfolio website for me, styled as a Linux [Hyprland](https://hyprland.org/) desktop environment.
 
 The site behaves like a desktop OS: navigate with a working terminal emulator or a Hyprland-style app launcher. Sections open as floating, draggable, resizable windows that snap to screen edges and corners like a real tiling window manager.
 
