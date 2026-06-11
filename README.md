@@ -43,5 +43,5 @@ Planned: AWS S3 (static hosting) + CloudFront (CDN), mirrored to GitHub Pages.
 ## Links
 
 - GitHub: [JordanCa0](https://github.com/JordanCa0)
-- LinkedIn: [jordan-cao](https://www.linkedin.com/in/jordan-cao)
+- LinkedIn: [jordan-cao](https://www.linkedin.com/in/jordan-cao-585a76204/)
 - Email: jordancao77@gmail.com
