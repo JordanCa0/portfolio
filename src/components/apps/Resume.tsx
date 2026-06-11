@@ -1,3 +1,5 @@
+import { Download } from 'lucide-react';
+
 interface Entry {
   title: string;
   org: string;
@@ -78,6 +80,13 @@ function Section({ heading, entries }: { heading: string; entries: Entry[] }) {
 export default function Resume() {
   return (
     <div className="space-y-7 p-6">
+      <a
+        href="/resume.pdf"
+        download="Jordan_Cao_Resume.pdf"
+        className="inline-flex items-center gap-2 rounded-lg border border-edge bg-chrome px-4 py-2 text-xs font-semibold transition-colors hover:border-accent hover:text-accent-soft"
+      >
+        <Download size={14} /> Download PDF
+      </a>
       <Section heading="Experience" entries={EXPERIENCE} />
       <Section heading="Education" entries={EDUCATION} />
     </div>
