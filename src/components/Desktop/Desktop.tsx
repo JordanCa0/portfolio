@@ -45,10 +45,33 @@ export default function Desktop({ wm, renderApp }: DesktopProps) {
         />
       )}
 
+      {/* Dock for minimized windows — click to restore */}
+      {wm.windows.some((w) => w.minimized) && (
+        <div className="absolute bottom-3 left-1/2 z-[9998] flex -translate-x-1/2 gap-1.5 rounded-lg border border-edge bg-glass p-1.5 shadow-2xl backdrop-blur-glass">
+          {wm.windows
+            .filter((w) => w.minimized)
+            .map((w) => {
+              const app = APP_MAP[w.appId];
+              const Icon = app.icon;
+              return (
+                <button
+                  key={w.id}
+                  onClick={() => {
+                    wm.minimizeWindow(w.id);
+                    wm.focusWindow(w.id);
+                  }}
+                  className="flex items-center gap-2 rounded px-3 py-1.5 text-xs transition-colors hover:bg-accent/25"
+                >
+                  <Icon size={14} className="text-accent-soft" />
+                  {app.label}
+                </button>
+              );
+            })}
+        </div>
+      )}
+
       <AnimatePresence>
-        {wm.windows
-          .filter((w) => !w.minimized)
-          .map((w) => (
+        {wm.windows.map((w) => (
             <Window
               key={w.id}
               win={w}

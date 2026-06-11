@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { Rnd } from 'react-rnd';
 import { motion } from 'framer-motion';
-import type { AppDefinition, Size, SnapZone, WindowInstance } from '../../types';
+import type { AppDefinition, Position, Size, SnapZone, WindowInstance } from '../../types';
 import { detectSnapZone, snapZoneRect } from './snap';
 
 interface WindowProps {
@@ -35,6 +35,8 @@ export default function Window({
   const Icon = app.icon;
   // Zone under the pointer during the current drag, applied on drop
   const dragZone = useRef<SnapZone>(null);
+  // Where the drag started, to tell real drags apart from plain clicks
+  const dragStart = useRef<Position | null>(null);
 
   const pointerZone = (e: MouseEvent | TouchEvent): SnapZone => {
     const point = 'touches' in e ? e.touches[0] : e;
@@ -75,9 +77,20 @@ export default function Window({
       minHeight={MIN_HEIGHT}
       bounds="parent"
       dragHandleClassName="window-drag-handle"
-      style={{ zIndex: win.zIndex }}
-      onDragStart={() => onFocus(win.id)}
-      onDrag={(e) => {
+      style={{
+        zIndex: win.zIndex,
+        // Hide rather than unmount when minimized so app state (e.g. the
+        // terminal's scrollback) survives restore
+        display: win.minimized ? 'none' : undefined,
+      }}
+      onDragStart={() => {
+        dragStart.current = { ...win.position };
+        onFocus(win.id);
+      }}
+      onDrag={(e, d) => {
+        // Controlled Rnd: position state must update during the drag,
+        // otherwise the window doesn't move at all
+        onUpdate(win.id, { position: { x: d.x, y: d.y } });
         const zone = pointerZone(e as MouseEvent | TouchEvent);
         if (zone !== dragZone.current) {
           dragZone.current = zone;
@@ -86,12 +99,23 @@ export default function Window({
       }}
       onDragStop={(_e, d) => {
         const zone = dragZone.current;
+        const start = dragStart.current;
         dragZone.current = null;
+        dragStart.current = null;
         onSnapPreview(null);
+        // A plain click on the title bar fires drag events too; only treat
+        // it as a drag if the window actually moved
+        const moved =
+          start !== null &&
+          (Math.abs(d.x - start.x) > 4 || Math.abs(d.y - start.y) > 4);
+        if (!moved) {
+          if (start) onUpdate(win.id, { position: start });
+          return;
+        }
         if (zone) {
           onUpdate(win.id, {
             snapped: zone,
-            restore: win.restore ?? { position: win.position, size: win.size },
+            restore: win.restore ?? { position: start, size: win.size },
             ...snapZoneRect(zone, getDesktopSize()),
           });
         } else if (win.snapped) {
@@ -132,7 +156,12 @@ export default function Window({
         >
           <Icon size={14} className="text-accent-soft" />
           <span className="flex-1 truncate text-xs font-medium">{app.label}</span>
-          <div className="flex items-center gap-2">
+          {/* Keep clicks on the control dots from starting a drag */}
+          <div
+            className="flex items-center gap-2"
+            onMouseDown={(e) => e.stopPropagation()}
+            onDoubleClick={(e) => e.stopPropagation()}
+          >
             <button
               aria-label="Minimize"
               onClick={() => onMinimize(win.id)}
