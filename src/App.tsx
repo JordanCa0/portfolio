@@ -67,6 +67,9 @@ export default function App() {
         dark={dark}
         onToggleTheme={() => setDark((d) => !d)}
         onToggleLauncher={() => setLauncherOpen((o) => !o)}
+        activeWorkspace={wm.activeWorkspace}
+        occupiedWorkspaces={new Set(wm.windows.map((w) => w.workspace))}
+        onSwitchWorkspace={wm.switchWorkspace}
       />
       <div className="relative flex min-h-0 flex-1 flex-col">
         <Desktop wm={wm} renderApp={renderApp} />

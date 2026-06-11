@@ -45,11 +45,11 @@ export default function Desktop({ wm, renderApp }: DesktopProps) {
         />
       )}
 
-      {/* Dock for minimized windows — click to restore */}
-      {wm.windows.some((w) => w.minimized) && (
+      {/* Dock for minimized windows on this workspace — click to restore */}
+      {wm.windows.some((w) => w.minimized && w.workspace === wm.activeWorkspace) && (
         <div className="absolute bottom-3 left-1/2 z-[9998] flex -translate-x-1/2 gap-1.5 rounded-lg border border-edge bg-glass p-1.5 shadow-2xl backdrop-blur-glass">
           {wm.windows
-            .filter((w) => w.minimized)
+            .filter((w) => w.minimized && w.workspace === wm.activeWorkspace)
             .map((w) => {
               const app = APP_MAP[w.appId];
               const Icon = app.icon;
@@ -77,6 +77,7 @@ export default function Desktop({ wm, renderApp }: DesktopProps) {
               win={w}
               app={APP_MAP[w.appId]}
               focused={wm.focusedId === w.id}
+              hidden={w.minimized || w.workspace !== wm.activeWorkspace}
               getDesktopSize={getDesktopSize}
               onClose={wm.closeWindow}
               onFocus={wm.focusWindow}

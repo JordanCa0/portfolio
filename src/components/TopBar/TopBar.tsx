@@ -6,9 +6,13 @@ interface TopBarProps {
   dark: boolean;
   onToggleTheme: () => void;
   onToggleLauncher: () => void;
+  activeWorkspace: number;
+  /** Workspace indices that currently hold windows */
+  occupiedWorkspaces: Set<number>;
+  onSwitchWorkspace: (index: number) => void;
 }
 
-const WORKSPACES = ['A', 'B', 'C', 'D', 'E'];
+export const WORKSPACES = ['A', 'B', 'C', 'D', 'E'];
 
 function formatTime(d: Date): string {
   let h = d.getHours();
@@ -18,7 +22,14 @@ function formatTime(d: Date): string {
   return `${String(h).padStart(2, '0')}:${m} ${ampm}`;
 }
 
-export default function TopBar({ dark, onToggleTheme, onToggleLauncher }: TopBarProps) {
+export default function TopBar({
+  dark,
+  onToggleTheme,
+  onToggleLauncher,
+  activeWorkspace,
+  occupiedWorkspaces,
+  onSwitchWorkspace,
+}: TopBarProps) {
   const [now, setNow] = useState(() => new Date());
   // Fake system stats, slowly animated around a baseline
   const [stats, setStats] = useState({ cpu: 7, ram: 38 });
@@ -49,16 +60,23 @@ export default function TopBar({ dark, onToggleTheme, onToggleLauncher }: TopBar
       <span className="font-semibold text-accent-soft">jordan@portfolio</span>
       <div className="hidden items-center gap-1.5 sm:flex">
         {WORKSPACES.map((w, i) => (
-          <span
+          <button
             key={w}
-            className={`flex h-5 w-5 items-center justify-center rounded text-[10px] ${
-              i === 0
+            onClick={() => onSwitchWorkspace(i)}
+            aria-label={`Workspace ${w}`}
+            className={`relative flex h-5 w-5 items-center justify-center rounded text-[10px] transition-colors ${
+              i === activeWorkspace
                 ? 'bg-accent text-body'
-                : 'border border-edge text-body-muted'
+                : occupiedWorkspaces.has(i)
+                  ? 'border border-accent/60 text-body hover:bg-accent/25'
+                  : 'border border-edge text-body-muted hover:bg-accent/25'
             }`}
           >
             {w}
-          </span>
+            {occupiedWorkspaces.has(i) && i !== activeWorkspace && (
+              <span className="absolute -bottom-0.5 h-0.5 w-2 rounded-full bg-accent-soft" />
+            )}
+          </button>
         ))}
       </div>
 

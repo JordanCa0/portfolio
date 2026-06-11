@@ -32,6 +32,8 @@ export interface Size {
 export interface WindowInstance {
   id: string;
   appId: AppId;
+  /** Index into WORKSPACES (0 = A … 4 = E) */
+  workspace: number;
   zIndex: number;
   minimized: boolean;
   position: Position;

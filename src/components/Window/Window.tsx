@@ -8,6 +8,8 @@ interface WindowProps {
   win: WindowInstance;
   app: AppDefinition;
   focused: boolean;
+  /** Minimized or on an inactive workspace — kept mounted so state survives */
+  hidden: boolean;
   getDesktopSize: () => Size;
   onClose: (id: string) => void;
   onFocus: (id: string) => void;
@@ -24,6 +26,7 @@ export default function Window({
   win,
   app,
   focused,
+  hidden,
   getDesktopSize,
   onClose,
   onFocus,
@@ -79,9 +82,7 @@ export default function Window({
       dragHandleClassName="window-drag-handle"
       style={{
         zIndex: win.zIndex,
-        // Hide rather than unmount when minimized so app state (e.g. the
-        // terminal's scrollback) survives restore
-        display: win.minimized ? 'none' : undefined,
+        display: hidden ? 'none' : undefined,
       }}
       onDragStart={() => {
         dragStart.current = { ...win.position };

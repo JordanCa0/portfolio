@@ -6,6 +6,8 @@ const DEFAULT_SIZE = { width: 700, height: 500 };
 export interface WindowManager {
   windows: WindowInstance[];
   focusedId: string | null;
+  activeWorkspace: number;
+  switchWorkspace: (index: number) => void;
   openWindow: (appId: AppId) => void;
   closeWindow: (id: string) => void;
   focusWindow: (id: string) => void;
@@ -17,13 +19,21 @@ export interface WindowManager {
 export function useWindowManager(): WindowManager {
   const [windows, setWindows] = useState<WindowInstance[]>([]);
   const [focusedId, setFocusedId] = useState<string | null>(null);
+  const [activeWorkspace, setActiveWorkspace] = useState(0);
   const zCounter = useRef(10);
   const idCounter = useRef(1);
+
+  const switchWorkspace = useCallback((index: number) => {
+    setActiveWorkspace(index);
+    setFocusedId(null);
+  }, []);
 
   const openWindow = useCallback((appId: AppId) => {
     setWindows((ws) => {
       const existing = ws.find((w) => w.appId === appId);
       if (existing) {
+        // Already open: jump to its workspace and bring it forward
+        setActiveWorkspace(existing.workspace);
         setFocusedId(existing.id);
         return ws.map((w) =>
           w.id === existing.id
@@ -45,6 +55,7 @@ export function useWindowManager(): WindowManager {
         {
           id,
           appId,
+          workspace: activeWorkspace,
           zIndex: ++zCounter.current,
           minimized: false,
           position,
@@ -54,7 +65,7 @@ export function useWindowManager(): WindowManager {
         },
       ];
     });
-  }, []);
+  }, [activeWorkspace]);
 
   const closeWindow = useCallback((id: string) => {
     setWindows((ws) => ws.filter((w) => w.id !== id));
@@ -86,6 +97,8 @@ export function useWindowManager(): WindowManager {
   return {
     windows,
     focusedId,
+    activeWorkspace,
+    switchWorkspace,
     openWindow,
     closeWindow,
     focusWindow,
