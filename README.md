@@ -4,6 +4,10 @@ Personal portfolio website for me, styled as a Linux [Hyprland](https://hyprland
 
 The site behaves like a desktop OS: navigate with a working terminal emulator or a Hyprland-style app launcher. Sections open as floating, draggable, resizable windows that snap to screen edges and corners like a real tiling window manager.
 
+![Desktop with About, Projects, Themes, and Terminal windows open](docs/screenshots/desktop.png)
+
+![Terminal window on first load](docs/screenshots/terminal.png)
+
 ## Features
 
 - **Window manager** — draggable, resizable, focusable windows with z-index stacking, minimize/maximize, and open/close animations
