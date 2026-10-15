@@ -13,19 +13,19 @@ const EXPERIENCE: Entry[] = [
     org: 'Mercury — San Francisco, CA (Remote)',
     period: 'Jan 2026 — May 2026',
     bullets: [
-      'Designed and implemented pause/unpause functionality for autotransfer rules in a large-scale Haskell fintech backend, spanning database schema changes, domain types, SQL queries, and API handlers across 140+ commits.',
-      'Built database migrations and schema evolution for autotransfer rule lineage tracking — backfill scripts, NOT NULL constraint migrations, and a new pause table with indexing — ensuring zero-downtime deployments on production banking infrastructure.',
-      'Extended type-safe Esqueleto SQL queries and domain model conversions to surface pause status and lineage data through the API, maintaining correctness via Haskell’s type system and comprehensive HSpec test suites.',
-      'Contributed to partner bank rollover logic by implementing autotransfer disablement during account migrations, coordinating across service boundaries in a Nix-based monorepo with Temporal workflows.',
+      'Designed and implemented pause/unpause functionality for autotransfer rules for 300,000+ users in a large-scale Haskell fintech backend, spanning database schema changes, domain types, SQL queries, and REST API handlers.',
+      'Built database migrations and schema evolution for autotransfer rule lineage tracking, including backfill scripts and a new pause table with indexing, ensuring zero-downtime deployments on production banking infrastructure.',
+      'Shipped the pause/unpause autotransfer feature end-to-end, exposing pause status and history through the API with full HSpec test coverage; adopted by over 70% of customers who use autotransfers.',
+      'Participated in Agile sprint planning, stand-ups, and peer code reviews, and contributed to CI/CD pipelines to ship autotransfer disablement logic for partner bank account migrations touching millions of dollars in transfers, using Temporal workflows to guarantee reliable execution across service boundaries in a Nix-based monorepo.',
     ],
   },
   {
     title: 'Research Assistant — Machine Learning & Evolutionary Algorithms',
-    org: 'Wilfrid Laurier University — Waterloo, ON',
+    org: 'Wilfrid Laurier University, supervised by Dr. Azam Asilian Bidgoli — Waterloo, ON',
     period: 'Sep 2025 — Jan 2026',
     bullets: [
-      'Utilized Phikon-2 on a Whole Slide Imaging (WSI) dataset to extract 50,000+ high-dimensional features per slide, enabling faster downstream classification and more compact medical image representations.',
-      'Optimized CNN architectures through iterative experimentation with evolutionary strategies, achieving a 20% reduction in redundant features and shorter training times without sacrificing accuracy.',
+      'Extracted 1024-dimensional feature vectors for 140,000+ image patches across 533 whole-slide images using Phikon-2, then applied Leiden clustering to build slide-level representations for classification.',
+      'Designed a Genetic Algorithm to select the most impactful clusters via crossover and mutation, cutting computational cost while preserving model accuracy.',
     ],
   },
   {
@@ -33,9 +33,31 @@ const EXPERIENCE: Entry[] = [
     org: 'Wilfrid Laurier University — Waterloo, ON',
     period: 'Jan 2025 — Apr 2025',
     bullets: [
-      'Leveraged Python and ML libraries (NumPy, Scikit-learn, PyTorch, Matplotlib) for predictive analytics and donor segmentation, identifying high-propensity prospects with ~85% accuracy.',
-      'Created interactive dashboards and automated reporting tools using visualization libraries and structured SQL queries to support real-time analytics.',
-      'Validated and cleaned 100,000+ alumni records, removing duplicates and resolving inconsistencies to improve data reliability for reporting.',
+      'Built predictive models for donor segmentation, identifying high-propensity prospects with ~85% accuracy to support targeted outreach.',
+      'Created interactive dashboards and automated reporting tools for stakeholders using structured SQL queries to support real-time analytics.',
+      'Validated and cleaned 100,000+ alumni records, removing duplicates and resolving inconsistencies, improving reporting accuracy by 15%.',
+    ],
+  },
+];
+
+const PROJECTS: Entry[] = [
+  {
+    title: 'GTOtutor',
+    org: 'TypeScript, React, Fastify, PostgreSQL, Rust, AWS, Claude API',
+    period: 'Live at gtotutor.app',
+    bullets: [
+      'Built and deployed a full-stack poker trainer that grades beginners’ decisions against GTO charts across heads-up and 6-max tables, using a custom Rust preflop solver and live turn/river solves on AWS Lambda.',
+      'Integrated a Claude-powered AI coach that explains solver decisions and identifies player leaks, with Supabase Auth and Postgres storing hands, session reviews, and a player style profile.',
+      'Hosted on AWS (S3 + CloudFront, Dockerized Fastify API on EC2) with a mobile-optimized React 19 UI covered by Playwright end-to-end tests.',
+    ],
+  },
+  {
+    title: 'Whole-Slide-Image (WSI) Classification Study',
+    org: 'Python, Leiden Clustering, Genetic Algorithms, Phikon-2',
+    period: '',
+    bullets: [
+      'Found that Leiden clustering on raw features outperformed PCA-based K-means, achieving a weighted F1-score of 0.944 versus ~0.83 for the best K-means baseline.',
+      'Designed a Genetic Algorithm for evolutionary feature selection, reducing the feature space by 95% (201 to 10 features) while retaining a weighted F1-score of 0.905, cutting computational cost.',
     ],
   },
 ];
@@ -44,7 +66,7 @@ const EDUCATION: Entry[] = [
   {
     title: 'BSc in Computer Science',
     org: 'Wilfrid Laurier University — Waterloo, ON',
-    period: 'Class of 2026',
+    period: 'Sep 2026',
     bullets: [],
   },
 ];
@@ -81,13 +103,14 @@ export default function Resume() {
   return (
     <div className="space-y-7 p-6">
       <a
-        href="/resume.pdf"
+        href={`${import.meta.env.BASE_URL}resume.pdf`}
         download="Jordan_Cao_Resume.pdf"
         className="inline-flex items-center gap-2 rounded-lg border border-edge bg-chrome px-4 py-2 text-xs font-semibold transition-colors hover:border-accent hover:text-accent-soft"
       >
         <Download size={14} /> Download PDF
       </a>
       <Section heading="Experience" entries={EXPERIENCE} />
+      <Section heading="Projects" entries={PROJECTS} />
       <Section heading="Education" entries={EDUCATION} />
     </div>
   );

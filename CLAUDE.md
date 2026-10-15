@@ -2,7 +2,7 @@
 
 Personal portfolio for Jordan Cao styled as a Linux Hyprland desktop. React +
 TypeScript + Vite + Tailwind + framer-motion + react-rnd. Fully static, no
-backend. Repo: https://github.com/JordanCa0/portfolio (public).
+backend. Repo: https://github.com/JordanCa0/portfolioOS (public), live at https://jordanca0.github.io/portfolioOS/.
 
 ## Environment quirks (read first)
 

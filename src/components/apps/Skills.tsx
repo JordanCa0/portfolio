@@ -6,6 +6,7 @@ const CATEGORIES: Array<{ name: string; items: string[] }> = [
       'Java',
       'Python',
       'C/C++',
+      'Rust',
       'SQL',
       'JavaScript',
       'TypeScript',
@@ -18,8 +19,11 @@ const CATEGORIES: Array<{ name: string; items: string[] }> = [
     name: 'Frameworks & Libraries',
     items: [
       'React',
+      'Redux',
       'Node.js',
+      'Fastify',
       'Esqueleto',
+      'Persistent',
       'HSpec',
       'PyTorch',
       'TensorFlow',
@@ -38,14 +42,14 @@ const CATEGORIES: Array<{ name: string; items: string[] }> = [
       'PostgreSQL',
       'Temporal',
       'Power BI',
-      'GHCi',
       'Cursor',
       'Claude Code',
+      'Figma',
     ],
   },
   {
     name: 'Cloud & Data',
-    items: ['AWS', 'Supabase', 'AI/ML', 'CNNs', 'Image Classification', 'Data Processing'],
+    items: ['AWS', 'Supabase', 'REST APIs', 'CNNs', 'Image Classification', 'Data Processing'],
   },
 ];
 

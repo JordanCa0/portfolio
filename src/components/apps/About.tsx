@@ -14,7 +14,8 @@ export default function About() {
         I'm a computer science student at Wilfrid Laurier University, most
         recently a software engineering intern at Mercury working on a
         large-scale Haskell fintech backend. I've also done machine learning
-        research with evolutionary algorithms and medical imaging. I like type systems,
+        research with evolutionary algorithms and medical imaging, and built
+        GTOtutor, a poker trainer with a Rust solver and a Claude-powered coach. I like type systems,
         clean abstractions, and software that feels good to use — like this
         desktop you're clicking around in.
       </p>
